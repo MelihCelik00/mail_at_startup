@@ -8,6 +8,8 @@ from typing import Dict, Any
 from email.message import EmailMessage
 
 
+receivers = ["yagizcanilbey1903@gmail.com", "melihsafa.c@gmail.com"]
+
 
 def send_mail(mail_content: str) -> str:
     EMAIL_ADDRESS = "melihsafa.c@gmail.com"
