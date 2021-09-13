@@ -14,7 +14,7 @@ receivers = ["yagizcanilbey1903@gmail.com", "melihsafa.c@gmail.com"]
 
 def send_mail(mail_content: str) -> str:
     EMAIL_ADDRESS = "melihsafa.c@gmail.com"
-    EMAIL_PASSWORD = "password"
+    EMAIL_PASSWORD = "xxxxxxxxxxxxxxxx"
     msg = EmailMessage()
     msg["Subject"] = f"Sendmail SMTP Email test 001"
     msg["From"] = EMAIL_ADDRESS
@@ -23,9 +23,11 @@ def send_mail(mail_content: str) -> str:
     msg.add_alternative(mail_content, subtype="html")
 
     context = ssl.create_default_context()
-    with smtplib.SMTP("smtp.gmail.com", 465) as smtp:
+    with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
+        smtp.ehlo()
+        smtp.starttls(context=context)
+        smtp.ehlo()
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-        smpt.starttls(context=context)
         smtp.send_message(msg)
 
 
