@@ -5,6 +5,7 @@
 
 import smtplib
 from typing import Dict, Any
+import ssl
 from email.message import EmailMessage
 
 
@@ -21,8 +22,10 @@ def send_mail(mail_content: str) -> str:
     msg.set_content("This is a Sendmail test e-mail message 1")
     msg.add_alternative(mail_content, subtype="html")
 
-    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+    context = ssl.create_default_context()
+    with smtplib.SMTP("smtp.gmail.com", 465) as smtp:
         smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        smpt.starttls(context=context)
         smtp.send_message(msg)
 
 
