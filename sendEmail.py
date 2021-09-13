@@ -4,26 +4,24 @@
 
 
 import smtplib
-
-sender = 'melihsafa.c@gmail.com'
-receivers = ['melihsafa.c@gmail.com']
-
-message = '''From: No Reply <melihsafa.c@gmail.com>
-To: Melih Safa Celik <melihsafa.c@gmail.com>
-Subject: Sendmail SMTP Email test 001
-
-This is a Sendmail test e-mail message 1.
-'''
-
-"""
-For gmail use smtp.gmail.com
-For outlook/hotmail use smtp-mail.outlook.com with the port number 587
-"""
-try:
-	smtpObj = smtplib.SMTP('localhost')
-	smtpObj.sendmail(sender, receivers, message)
-	print('Successfully sent email')
-except SMTPException:
-	print('Error: unable to send email')
+from typing import Dict, Any
+from email.message import EmailMessage
 
 
+
+def send_mail(mail_content: str) -> str:
+    EMAIL_ADDRESS = "melihsafa.c@gmail.com"
+    EMAIL_PASSWORD = "password"
+    msg = EmailMessage()
+    msg["Subject"] = f"Sendmail SMTP Email test 001"
+    msg["From"] = EMAIL_ADDRESS
+    msg["To"] = receivers 
+    msg.set_content("This is a Sendmail test e-mail message 1")
+    msg.add_alternative(mail_content, subtype="html")
+
+    with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
+        smtp.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
+        smtp.send_message(msg)
+
+
+send_mail("<h1>test_mail</h1>")
