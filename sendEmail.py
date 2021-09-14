@@ -23,7 +23,8 @@ def send_mail(mail_content: str) -> str:
     msg.add_alternative(mail_content, subtype="html")
 
     context = ssl.create_default_context()
-    with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
+    # smtp-mail.outlook.com
+    with smtplib.SMTP("smtp.gmail.com", 465) as smtp:
         smtp.ehlo()
         smtp.starttls(context=context)
         smtp.ehlo()
