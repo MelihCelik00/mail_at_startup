@@ -24,7 +24,7 @@ def send_mail(mail_content: str) -> str:
 
     context = ssl.create_default_context()
     # smtp-mail.outlook.com
-    with smtplib.SMTP("smtp.gmail.com", 465) as smtp:
+    with smtplib.SMTP("smtp.gmail.com", 465) as smtp: # port 587 can also be used if necessary
         smtp.ehlo()
         smtp.starttls(context=context)
         smtp.ehlo()
