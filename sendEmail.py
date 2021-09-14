@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # Author: Melih Safa Çelik
-# Date: September 13, 2021
-
+# Creation Date: September 13, 2021
+# Last Editted: September 14, 2021
 
 import smtplib
 from typing import Dict, Any
